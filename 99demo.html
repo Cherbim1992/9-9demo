@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    ul li {
+        list-style: none;
+
+    }
+    ul li span{
+         border: 1px solid #7e8c8d;
+         margin: 2px 2px 0px 0px;
+         padding: 2px 6px 0px 0px;
+         width: 65px;
+         text-align: center;
+
+    }
+    </style>
+</head>
+<body>
+<ul id="ul"></ul>
+</body>
+<script>
+    //主程test
+function test(number){
+    var ul=document.getElementById('ul')
+    for(var i=0;i<=number;i++){
+        var li=document.createElement('li');
+        for(var j=0;j<=i;j++){
+            var span=document.createElement('span');
+            span.innerHTML=i+'*'+j+'='+i*j;
+            span.style.display='none';
+            li.appendChild(span);
+        }
+        ul.appendChild(li)
+    }
+    animate();
+}
+//animate
+function animate() {
+    var span=ul.getElementsByTagName('span');
+    var _index=0;
+    var timer=setInterval(function(){
+        span[_index].style.display='inline-block';
+        _index++;
+        console.log(_index);
+        if(_index>=span.length){
+            clearInterval(timer);
+            animate2();
+        }
+    },200);
+}
+function animate2(){
+    var span_=ul.getElementsByTagName('span');
+    var __index=span_.length;
+    var timer=setInterval(function () {
+        __index--;
+        span_[__index].style.display='none';
+      console.log(__index)
+        if(__index==0){
+            clearInterval(timer);
+            animate();
+        }
+    },200)
+}
+//start
+test(9);
+</script>
+</html>
